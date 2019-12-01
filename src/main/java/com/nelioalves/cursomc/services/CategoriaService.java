@@ -13,6 +13,6 @@ public class CategoriaService {
 	private CategoriaRepository categoriaRepository;
 	
 	public Categoria buscar(Integer id) {
-		return categoriaRepository.findById(id).get();
+		return categoriaRepository.findById(id).orElse(null);
 	}
 }
