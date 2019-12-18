@@ -1,0 +1,64 @@
+Criando um novo app
+	Create New App
+	Nome (opcional)
+	Escolha a localidade
+	
+Instalação do MySQL no Heroku
+	Aba Overview -> Configure Add-ons
+	Procure "MySQL" na caixa de pesquisa e escolha o ClearDB MySQL
+	Escolha o plano e clique em Provide
+	Cadastrar um cartão de crédito (https://dashboard.heroku.com/account/billing)
+	Documentação do ClearDB: https://devcenter.heroku.com/articles/cleardb
+	
+Instalação do Heroku CLI
+	https://devcenter.heroku.com/articles/heroku-cli#download-and-install
+	Escolha a versão para seu sistema faça o procedimento de instalação
+	Abra o terminal (no Windows o cmd) e faça login:
+	heroku login
+	
+1) Gere um backup da base de dados local:
+	mysqldump -u user -p dbname > arquivo.sql
+	Exemplo: mysqldump -u root -p curso_spring > arquivo.sql
+	
+2) Associe o repositório local com o Heroku:
+	Acesse o terminal (no Windows o Git Bash) na pasta do projeto:
+	heroku git:remote -a curso-spring-ionic
+3) Execute o SQL gerado no servidor do Heroku
+3.1) Obtenha a URL do banco de dados
+	Acesse o terminal (no Windows o Git Bash) na pasta do projeto
+	heroku config | grep CLEARDB_DATABASE_URL
+	
+3.2) Com base nos dados da URL de conexão, monte o comando para executar o arquivo SQL no servidor:
+	mysql --host=us-cdbr-iron-east-05.cleardb.net --user=b8782e4e3f88f4 --password=b9748a8b --reconnect heroku_71216a81091a2da < arquivo.sql
+	
+Configuração e envio do projeto para produção
+Atenção: é preciso estar logado no Heroku e é preciso ter associado o repositório ao Heroku
+
+1) Obtenha a URL do banco de dados
+	Acesse o terminal (no Windows o Git Bash) na pasta do projeto
+	heroku config | grep CLEARDB_DATABASE_URL
+2) Crie o arquivo application-prod.properties
+	(troque pela URL do seu banco de dados):
+	spring.datasource.url=mysql://b2904110475a07:23511c2b@us-cdbr-iron-east-05.cleardb.net/heroku_019b910edd32a2f?reconnect=true
+	spring.jpa.hibernate.ddl-auto=none
+	spring.jpa.show-sql=false
+	spring.jpa.properties.hibernate.format_sql=false
+3) Crie o arquivo Procfile
+	(troque pelo nome do seu projeto):
+	web: java -Dserver.port=$PORT -Dspring.profiles.active=prod $JAVA_OPTS -jar target/cursomc-0.0.1-SNAPSHOT.jar
+Notas:
+	-D serve para passar parâmetros ao Heroku
+	$PORT é a variável em que o Heroku armazena a porta pela qual a API vai ser acessada
+	Para gerar o .jar do projeto:
+	o Window -> Preferences -> Installed JREs
+	Selecione o item existente e clique Edit
+	Clique Directory e selecione a pasta do JDK (não a do JRE), clique Finish
+	Clique Apply and Clone
+	Clique Project -> Clean
+	Run As -> Maven Install (o banco de dados precisa estar online)
+	Verifique o arquivo .jar gerado na pasta target
+4) Envie o projeto para o Heroku
+	faça um novo commit com as alterações
+	git push heroku master
+Atenção: mesmo depois do processo finalizar no terminal, pode levar uns minutos para a API responder corretamente as
+requisições com acesso a dados.
