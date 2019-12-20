@@ -22,7 +22,8 @@ Instalação do Heroku CLI
 	
 2) Associe o repositório local com o Heroku:
 	Acesse o terminal (no Windows o Git Bash) na pasta do projeto:
-	heroku git:remote -a curso-spring-ionic
+	heroku git:remote -a bione-curso-spring-ionic (nome do seu repo)
+	A cada nessecidade de publicação, digitar no cmd git push heroku master
 3) Execute o SQL gerado no servidor do Heroku
 3.1) Obtenha a URL do banco de dados
 	Acesse o terminal (no Windows o Git Bash) na pasta do projeto
