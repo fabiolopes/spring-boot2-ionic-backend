@@ -1,0 +1,13 @@
+1 - Erro ocorrido:
+javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security
+.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+
+#Provavelmente está sendo bloqueado pelo antivirus (avast no meu caso) ou firewall. Sendo resolvido desativando
+ou adicionando regra;
+
+2 - Erro ocorrido:
+javax.mail.AuthenticationFailedException: 535-5.7.8 Username and Password not accepted. Learn more at
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials z6sm1690850pfa.155 - gsmtp
+
+Se as credenciais estiverem corretas no arquivo de conf, terá que entrar no link 
+https://myaccount.google.com/lesssecureapps e marcar habilitado para apps poderem acessar o email.
