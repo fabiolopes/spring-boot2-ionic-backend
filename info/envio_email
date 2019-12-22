@@ -11,3 +11,4 @@ javax.mail.AuthenticationFailedException: 535-5.7.8 Username and Password not ac
 
 Se as credenciais estiverem corretas no arquivo de conf, terá que entrar no link 
 https://myaccount.google.com/lesssecureapps e marcar habilitado para apps poderem acessar o email.
+https://accounts.google.com/b/0/DisplayUnlockCaptcha tbm liberar por esse
