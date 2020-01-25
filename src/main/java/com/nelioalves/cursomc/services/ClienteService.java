@@ -114,7 +114,7 @@ public class ClienteService {
 	}
 	
 	public Cliente fromDTO(ClienteNewDTO dto) {
-		Cliente cli = new Cliente(null, dto.getNome(), dto.getEmail(), dto.getCpfOuCnpj(), TipoCliente.toEnum(dto.getTipoCliente()), pe.encode(dto.getSenha()));
+		Cliente cli = new Cliente(null, dto.getNome(), dto.getEmail(), dto.getCpfOuCnpj(), TipoCliente.toEnum(dto.getTipo()), pe.encode(dto.getSenha()));
 		Cidade cid = cidadeRepository.findById(dto.getCidadeId()).get();
 		Endereco end = new Endereco(null, dto.getLogradouro(), dto.getNumero(), dto.getComplemento(), dto.getBairro(), dto.getCep(), cli, cid);
 		cli.getEnderecos().add(end);
