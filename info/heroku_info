@@ -32,6 +32,10 @@ Instalação do Heroku CLI
 3.2) Com base nos dados da URL de conexão, monte o comando para executar o arquivo SQL no servidor:
 	mysql --host=us-cdbr-iron-east-05.cleardb.net --user=b8782e4e3f88f4 --password=b9748a8b --reconnect heroku_71216a81091a2da < arquivo.sql
 	
+	Essa conf foi yirada dessa string:
+	Ex:     User           senha    host                             database 
+	mysql://be2b996f3e25e8:74d20f59@us-cdbr-iron-east-05.cleardb.net/heroku_d04624ba67275ae?reconnect=true
+
 Configuração e envio do projeto para produção
 Atenção: é preciso estar logado no Heroku e é preciso ter associado o repositório ao Heroku
 
